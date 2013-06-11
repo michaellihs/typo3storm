@@ -10,6 +10,6 @@ Installation
 * Clone project
 * Open PHPStorm
 * Press CMD + , (open preferences pane)
-* Go to "Plugins" section
+* Go to the "Plugins" section
 * Click "Install plugin from disk..."
-* Select typo3storm.jar, click "OK" and restart PHPStorm
+* Select the typo3storm.jar included in this project, click "OK" and restart PHPStorm
