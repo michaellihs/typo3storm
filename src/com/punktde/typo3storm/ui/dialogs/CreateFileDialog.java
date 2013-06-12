@@ -3,14 +3,19 @@ package com.punktde.typo3storm.ui.dialogs;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.punktde.typo3storm.enums.FileType;
+import com.punktde.typo3storm.models.CreateFileInfo;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
+
+/**
+ * Class implements a GUI dialog to be shown to users for creating a new file.
+ *
+ * @author Michael Knoll (mimi@kaktusteam.de)
+ */
 public class CreateFileDialog extends DialogWrapper {
 
     private JComboBox fileTypeSelector;
@@ -59,8 +64,8 @@ public class CreateFileDialog extends DialogWrapper {
 
 
     private void updateTestCheckboxStates() {
-        unitTest.setEnabled(((FileType)this.fileTypeSelector.getSelectedItem()).canHaveUnitTest());
-        functionalTest.setEnabled(((FileType)this.fileTypeSelector.getSelectedItem()).isCanHaveFunctionalTest());
+        unitTest.setEnabled(((FileType)this.fileTypeSelector.getSelectedItem()).canHaveUnitTest);
+        functionalTest.setEnabled(((FileType)this.fileTypeSelector.getSelectedItem()).canHaveFunctionalTest);
     }
 
 
@@ -96,8 +101,8 @@ public class CreateFileDialog extends DialogWrapper {
 
 
 
-    public String getFileType() {
-        return (String) fileTypeSelector.getSelectedItem();
+    public FileType getFileType() {
+        return (FileType)fileTypeSelector.getSelectedItem();
     }
 
 
@@ -123,6 +128,13 @@ public class CreateFileDialog extends DialogWrapper {
     @Override
     public JComponent getPreferredFocusedComponent() {
         return fileName;
+    }
+
+
+
+    public CreateFileInfo getCreateFileInfo() {
+        CreateFileInfo createFileInfo = new CreateFileInfo(this.getFileType(), this.getFileName(), this.createUnitTest(), this.createFunctionalTest());
+        return createFileInfo;
     }
 
 }

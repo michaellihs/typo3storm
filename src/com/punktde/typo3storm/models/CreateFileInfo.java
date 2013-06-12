@@ -1,35 +1,26 @@
 package com.punktde.typo3storm.models;
 
+import com.punktde.typo3storm.enums.FileType;
+
 /**
- * Created with IntelliJ IDEA.
- * User: mimi
- * Date: 12.06.13
- * Time: 00:12
- * To change this template use File | Settings | File Templates.
+ * Class implements a Data Transfer Object for the information
+ * gathered by the create file dialog.
+ *
+ * @author Michael Knoll (mimi@kaktusteam.de)
  */
 public class CreateFileInfo {
 
-    private String fileType;
-    private String fileName;
-    private Boolean unitTest;
-    private Boolean functionalTest;
+    final public FileType fileType;
+    final public String fileName;
+    final public Boolean unitTest;
+    final public Boolean functionalTest;
 
 
-
-    public String getFileType() {
-        return fileType;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public Boolean createUnitTest() {
-        return unitTest;
-    }
-
-    public Boolean createFunctionalTest() {
-        return functionalTest;
+    public CreateFileInfo(FileType fileType, String fileName, boolean unitTest, boolean functionalTest) {
+        this.fileType = fileType;
+        this.fileName = fileName;
+        this.unitTest = unitTest;
+        this.functionalTest = functionalTest;
     }
 
 }

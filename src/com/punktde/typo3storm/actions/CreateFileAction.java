@@ -6,6 +6,7 @@ import com.intellij.openapi.actionSystem.DataContext;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
+import com.punktde.typo3storm.models.CreateFileInfo;
 import com.punktde.typo3storm.ui.dialogs.CreateFileDialog;
 
 /**
@@ -33,10 +34,17 @@ public class CreateFileAction extends AnAction {
         final CreateFileDialog dialog = new CreateFileDialog(project);
 
         dialog.show();
+
         if( dialog.isOK()) {
-            Messages.showInfoMessage("ok geklickt", "ok geklickt");
+            this.handleCreateFileAction(dialog.getCreateFileInfo());
         }
 
+
+    }
+
+
+
+    private void handleCreateFileAction(CreateFileInfo createFileInfo) {
 
     }
 
