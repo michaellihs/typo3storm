@@ -133,7 +133,7 @@ public class CreateFileDialog extends DialogWrapper {
 
 
     public CreateFileInfo getCreateFileInfo() {
-        CreateFileInfo createFileInfo = new CreateFileInfo(this.getFileType(), this.getFileName(), this.createUnitTest(), this.createFunctionalTest());
+        CreateFileInfo createFileInfo = new CreateFileInfo(this.getFileType(), this.getFileName(), this.createUnitTest(), this.createFunctionalTest(), this.project);
         return createFileInfo;
     }
 

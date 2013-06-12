@@ -35,7 +35,7 @@
     <actions>
         <group id="Typo3Storm.Menu" text="_Typo3Storm" description="Typo3Storm Tools Menu">
             <add-to-group group-id="MainMenu" anchor="last"  />
-            <action id="Typo3Storm.createFileAction" class="com.punktde.typo3storm.actions.CreateFileAction" text="Create File"
+            <action id="Typo3Storm.createNewFileAction" class="com.punktde.typo3storm.actions.CreateNewFileAction" text="Create New File"
             description="Creates a new file using Extbase naming conventions for files" />
         </group>
     </actions>

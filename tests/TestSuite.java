@@ -1,4 +1,4 @@
-import com.punktde.typo3storm.helpers.FileHelpersTest;
+import com.punktde.typo3storm.util.Typo3StormStringUtilsTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -9,7 +9,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {
-        FileHelpersTest.class
+        Typo3StormStringUtilsTests.class
 } )
 
 public class TestSuite {

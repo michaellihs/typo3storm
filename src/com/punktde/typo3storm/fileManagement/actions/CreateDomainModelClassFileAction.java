@@ -1,27 +1,35 @@
 package com.punktde.typo3storm.fileManagement.actions;
 
 import com.intellij.psi.PsiFile;
-import com.punktde.typo3storm.enums.FileType;
+import com.punktde.typo3storm.enums.Typo3StormFileTemplate;
+import com.punktde.typo3storm.fileManagement.Typo3StormTemplateFactory;
 import com.punktde.typo3storm.models.CreateFileInfo;
+import com.punktde.typo3storm.util.Typo3StormStringUtils;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 /**
- * Created with IntelliJ IDEA.
- * User: mimi
- * Date: 12.06.13
- * Time: 20:57
- * To change this template use File | Settings | File Templates.
+ * Class implements an action that creates a domain model class file.
+ *
+ * @author Michael Knoll (mimi@kaktusteam.de)
  */
 public class CreateDomainModelClassFileAction implements CreateFileAction {
+
+    protected final static String EXT_NAME = "pt_extlist";
+
+    protected final static String EXTENDED_CLASS = "Tx_Extbase_DomainObject_AbstractEntity";
 
     @Override
     public PsiFile createFile(CreateFileInfo createFileInfo) {
         final Properties properties = new Properties();
-        properties.put("CLASSNAME", "Tx_Test_Domain_Model_" + createFileInfo.fileName.replace(".php", ""));
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        properties.put("CLASSNAME", Typo3StormStringUtils.pathToExtbaseClassName(EXT_NAME, "Domain/Model", createFileInfo.fileName));
+        properties.put("EXTENDS", EXTENDED_CLASS);
+        String path = createFileInfo.project.getBasePath() + "/htdocs/typo3conf/ext/" + EXT_NAME + "/Classes/Domain/Model";
+        PsiFile domainModelClassFile = Typo3StormTemplateFactory.createFileFromTemplate(path, properties, createFileInfo.fileName, Typo3StormFileTemplate.PhpClass, createFileInfo.project);
+        if (domainModelClassFile == null) {
+            throw new RuntimeException("Could not create new file with path " + path + "/" + createFileInfo.fileName);
+        }
+        return domainModelClassFile;
     }
 
 }

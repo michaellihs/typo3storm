@@ -1,5 +1,6 @@
 package com.punktde.typo3storm.models;
 
+import com.intellij.openapi.project.Project;
 import com.punktde.typo3storm.enums.FileType;
 
 /**
@@ -14,13 +15,15 @@ public class CreateFileInfo {
     final public String fileName;
     final public Boolean unitTest;
     final public Boolean functionalTest;
+    final public Project project;
 
 
-    public CreateFileInfo(FileType fileType, String fileName, boolean unitTest, boolean functionalTest) {
+    public CreateFileInfo(FileType fileType, String fileName, boolean unitTest, boolean functionalTest, Project project) {
         this.fileType = fileType;
         this.fileName = fileName;
         this.unitTest = unitTest;
         this.functionalTest = functionalTest;
+        this.project = project;
     }
 
 }

@@ -24,6 +24,7 @@ public enum Typo3StormFileTemplate {
     boolean isJ2eeTemplate;
 
 
+
     /**
      * Constructor for enum type.
      *
