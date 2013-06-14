@@ -11,6 +11,7 @@ import com.punktde.typo3storm.enums.FileType;
  */
 public class CreateFileInfo {
 
+    final public ExtensionInfo extensionInfo;
     final public FileType fileType;
     final public String fileName;
     final public Boolean unitTest;
@@ -18,7 +19,9 @@ public class CreateFileInfo {
     final public Project project;
 
 
-    public CreateFileInfo(FileType fileType, String fileName, boolean unitTest, boolean functionalTest, Project project) {
+
+    public CreateFileInfo(ExtensionInfo extensionInfo, FileType fileType, String fileName, boolean unitTest, boolean functionalTest, Project project) {
+        this.extensionInfo = extensionInfo;
         this.fileType = fileType;
         this.fileName = fileName;
         this.unitTest = unitTest;

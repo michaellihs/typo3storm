@@ -8,7 +8,9 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.psi.PsiFile;
 import com.punktde.typo3storm.enums.FileType;
+import com.punktde.typo3storm.fileManagement.actions.CreateControllerClassFileAction;
 import com.punktde.typo3storm.fileManagement.actions.CreateDomainModelClassFileAction;
+import com.punktde.typo3storm.fileManagement.actions.CreateRepositoryClassFileAction;
 import com.punktde.typo3storm.models.CreateFileInfo;
 import com.punktde.typo3storm.ui.dialogs.CreateFileDialog;
 
@@ -44,6 +46,8 @@ public class CreateNewFileAction extends AnAction {
 
         // Initialize the file type to create action mapping
         this.createFileActions.put(FileType.DomainModel, new CreateDomainModelClassFileAction());
+        this.createFileActions.put(FileType.Controller, new CreateControllerClassFileAction());
+        this.createFileActions.put(FileType.Repository, new CreateRepositoryClassFileAction());
     }
 
 

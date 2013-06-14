@@ -1,6 +1,12 @@
 <?php
-#parse("PHP File Header")
- 
+#parse("TYPO3 Copyright File Header")
+
+/**
+ *
+ *
+ * @package
+ * @author
+ */
 class ${CLASSNAME} #if(${EXTENDS} != "")extends ${EXTENDS}#end {
 
 }
