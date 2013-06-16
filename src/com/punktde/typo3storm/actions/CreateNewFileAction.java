@@ -8,9 +8,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.psi.PsiFile;
 import com.punktde.typo3storm.enums.FileType;
-import com.punktde.typo3storm.fileManagement.actions.CreateControllerClassFileAction;
-import com.punktde.typo3storm.fileManagement.actions.CreateDomainModelClassFileAction;
-import com.punktde.typo3storm.fileManagement.actions.CreateRepositoryClassFileAction;
+import com.punktde.typo3storm.fileManagement.actions.*;
 import com.punktde.typo3storm.models.CreateFileInfo;
 import com.punktde.typo3storm.ui.dialogs.CreateFileDialog;
 
@@ -18,28 +16,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class implements an action to create new files.
+ * Class implements an action to create new files within TYPO3 project.
  *
  * @author Michael Knoll mimi@kaktusteam.de
  */
-public class CreateNewFileAction extends AnAction {
-
-    protected Project project;
-
-
-
-    protected DataContext dataContext;
-
-
-
-    protected AnActionEvent event;
-
-
-
-    protected Map<FileType, com.punktde.typo3storm.fileManagement.actions.CreateFileAction> createFileActions = new HashMap<FileType, com.punktde.typo3storm.fileManagement.actions.CreateFileAction>();
-
-
-
+public class CreateNewFileAction extends AnAbstractAction {
 
     public CreateNewFileAction() {
         super();
@@ -48,6 +29,8 @@ public class CreateNewFileAction extends AnAction {
         this.createFileActions.put(FileType.DomainModel, new CreateDomainModelClassFileAction());
         this.createFileActions.put(FileType.Controller, new CreateControllerClassFileAction());
         this.createFileActions.put(FileType.Repository, new CreateRepositoryClassFileAction());
+        this.createFileActions.put(FileType.UnitTest, new CreateUnitTestClassFileAction());
+        this.createFileActions.put(FileType.FunctionalTest, new CreateFunctionalTestClassFileAction());
     }
 
 
@@ -78,35 +61,6 @@ public class CreateNewFileAction extends AnAction {
             throw new RuntimeException("No action could be found to handle creation of " + createFileInfo.fileType);
         }
 
-    }
-
-
-
-    public Project getProject() {
-        if(this.project == null){
-            if(getDataContext() != null){
-                //_project = (Project) getDataContext().getData(DataConstants.PROJECT); // DataKeys.PROJECT.getData(getDataContext());
-                this.project = PlatformDataKeys.PROJECT.getData(getDataContext());
-            }
-        }
-        return this.project;
-    }
-
-
-
-    public DataContext getDataContext() {
-        if(dataContext == null){
-            if(getEvent() != null){
-                dataContext = getEvent().getDataContext();
-            }
-        }
-        return dataContext;
-    }
-
-
-
-    public AnActionEvent getEvent() {
-        return this.event;
     }
 
 }

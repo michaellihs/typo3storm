@@ -41,8 +41,7 @@
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <projectConfigurable instance="com.punktde.typo3storm.ui.forms.Typo3StormSettingsForm"></projectConfigurable>
     </extensions>
-
 
 </idea-plugin>
