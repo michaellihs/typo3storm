@@ -35,6 +35,11 @@
     </project-components>
 
     <actions>
+        <action id="Typo3StormAction" class="com.punktde.typo3storm.Typo3StormAction" text="Typo3Storm"
+                description="Typo3Storm context aware action">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt T"/>
+        </action>
         <group id="Typo3Storm.Menu" text="_Typo3Storm" description="Typo3Storm Tools Menu">
             <add-to-group group-id="MainMenu" anchor="last"  />
             <action id="Typo3Storm.createNewFileAction" class="com.punktde.typo3storm.actions.CreateNewFileAction" text="Create New File"
