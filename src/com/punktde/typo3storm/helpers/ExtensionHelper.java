@@ -5,6 +5,7 @@ import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
 import com.intellij.psi.PsiManager;
+import com.punktde.typo3storm.Typo3StormSettings;
 import com.punktde.typo3storm.models.ExtensionInfo;
 
 import java.io.File;
@@ -57,7 +58,8 @@ public class ExtensionHelper {
      * @return Extension directory for given project
      */
     public static PsiDirectory getExtensionDirectory(Project project) {
-        VirtualFile projectRootDirectory = LocalFileSystem.getInstance().findFileByIoFile(new File(project.getBasePath()));
+        Typo3StormSettings settings = Typo3StormSettings.getInstance(project);
+        VirtualFile projectRootDirectory = LocalFileSystem.getInstance().findFileByIoFile(new File(settings.getPathToTypo3()));
         PsiDirectory projectDirectory = PsiManager.getInstance(project).findDirectory(projectRootDirectory);
         if (projectDirectory.findSubdirectory(TYPO3_CONF_DIRECTORY) == null) {
             throw new RuntimeException(TYPO3_CONF_DIRECTORY + " does not exist in current project path.");

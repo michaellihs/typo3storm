@@ -1,3 +1,4 @@
+import com.punktde.typo3storm.Typo3StormSettingsTests;
 import com.punktde.typo3storm.util.Typo3StormStringUtilsTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -9,7 +10,8 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses( {
-        Typo3StormStringUtilsTests.class
+        Typo3StormStringUtilsTests.class,
+        Typo3StormSettingsTests.class
 } )
 
 public class TestSuite {

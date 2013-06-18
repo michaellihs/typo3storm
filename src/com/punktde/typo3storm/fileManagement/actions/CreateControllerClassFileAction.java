@@ -17,6 +17,8 @@ public class CreateControllerClassFileAction implements CreateFileAction {
 
     protected final static String EXTENDED_CLASS = "Tx_PtExtbase_Controller_AbstractActionController";
 
+
+
     @Override
     public PsiFile createFile(CreateFileInfo createFileInfo) {
         final Properties properties = new Properties();

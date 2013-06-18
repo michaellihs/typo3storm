@@ -29,7 +29,9 @@
     </application-components>
 
     <project-components>
-        <!-- Add your project components here -->
+        <component>
+            <implementation-class>com.punktde.typo3storm.Typo3StormProjectComponent</implementation-class>
+        </component>
     </project-components>
 
     <actions>
@@ -42,6 +44,7 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <projectConfigurable instance="com.punktde.typo3storm.ui.forms.Typo3StormSettingsForm"></projectConfigurable>
+        <projectService serviceImplementation="com.punktde.typo3storm.Typo3StormSettings"/>
     </extensions>
 
 </idea-plugin>

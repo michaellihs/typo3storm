@@ -21,3 +21,4 @@ Functionality
 
 * Create new extension action
 * Run unit tests action
+* Implement TypeProviders (e.g. determine returned type of Extbase object manager get() from the given class name parameter)
