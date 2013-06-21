@@ -2,6 +2,7 @@ package com.punktde.typo3storm.fileManagement.actions;
 
 import com.intellij.psi.PsiFile;
 import com.punktde.typo3storm.enums.Typo3StormFileTemplate;
+import com.punktde.typo3storm.fileManagement.PathBuilder;
 import com.punktde.typo3storm.fileManagement.Typo3StormTemplateFactory;
 import com.punktde.typo3storm.models.CreateFileInfo;
 import com.punktde.typo3storm.util.Typo3StormStringUtils;
@@ -22,21 +23,25 @@ public class CreateFunctionalTestClassFileAction extends AbstractCreateFileActio
     @Override
     public PsiFile createFile(CreateFileInfo createFileInfo) {
         final Properties properties = new Properties();
-        String fileName = createFileInfo.fileName;
-        String fileNameWithoutPhp = fileName.contains(".php") ? fileName.substring(0, fileName.indexOf(".php")) : fileName;
-        String className = Typo3StormStringUtils.pathToExtbaseClassName(createFileInfo.extensionInfo.name, createFileInfo.path, fileNameWithoutPhp);
+        final PathBuilder pathBuilder = new PathBuilder(createFileInfo);
+
         properties.put("AUTHOR", getAuthor());
         properties.put("PACKAGE", "Tests");
-        properties.put("SUB_PACKAGE", "Functional\\" + getSubpackageByClassName(className));
-        properties.put("CLASSNAME", this.getFunctionalTestClassName(className));
+        properties.put("SUB_PACKAGE", "Functional\\" + getSubpackageByClassName(pathBuilder.getClassName()));
+        properties.put("CLASSNAME", this.getFunctionalTestClassName(pathBuilder.getClassName()));
         properties.put("EXTENDS", EXTENDED_CLASS);
-        properties.put("TESTED_CLASS", Typo3StormStringUtils.removeSubstringFromEndOfString(className, "Test"));
+        properties.put("TESTED_CLASS", Typo3StormStringUtils.removeSubstringFromEndOfString(pathBuilder.getClassName(), "Test"));
 
-        String path = createFileInfo.extensionInfo.getPath() + "/Tests/Functional/" + createFileInfo.path;
+        PsiFile functionalTestClassFile = Typo3StormTemplateFactory.createFileFromTemplate(
+                pathBuilder.getClassFilePath(),
+                properties,
+                createFileInfo.fileName,
+                Typo3StormFileTemplate.FunctionalTest,
+                createFileInfo.project
+        );
 
-        PsiFile functionalTestClassFile = Typo3StormTemplateFactory.createFileFromTemplate(path, properties, createFileInfo.fileName, Typo3StormFileTemplate.FunctionalTest, createFileInfo.project);
         if (functionalTestClassFile == null) {
-            throw new RuntimeException("Could not create new file with path " + path + "/" + createFileInfo.fileName);
+            throw new RuntimeException("Could not create new file with path " + pathBuilder.getClassFilePath() + "/" + createFileInfo.fileName);
         }
 
         return functionalTestClassFile;
