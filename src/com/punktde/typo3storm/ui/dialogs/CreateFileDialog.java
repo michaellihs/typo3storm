@@ -125,7 +125,12 @@ public class CreateFileDialog extends DialogWrapper {
 
 
     public String getFileName() {
-        return fileName.getText();
+        String fileName = this.fileName.getText();
+        if (fileName.contains("/")) {
+            String[] fileNameParts = fileName.split("/");
+            fileName = fileNameParts[fileNameParts.length - 1];
+        }
+        return fileName;
     }
 
 
@@ -148,6 +153,20 @@ public class CreateFileDialog extends DialogWrapper {
 
 
 
+    public String getDirectory() {
+        String path = "";
+        if (this.fileName.getText().contains("/")) {
+            String[] fileNameParts = this.fileName.getText().split("/");
+            for (int i = 0; i < fileNameParts.length -1; i++) {
+                path += fileNameParts[i] + "/";
+            }
+            path = path.substring(0,path.length() - 1);
+        }
+        return path;
+    }
+
+
+
     @Override
     public JComponent getPreferredFocusedComponent() {
         return fileName;
@@ -156,7 +175,7 @@ public class CreateFileDialog extends DialogWrapper {
 
 
     public CreateFileInfo getCreateFileInfo() {
-        CreateFileInfo createFileInfo = new CreateFileInfo(this.getExtensionInfo(), this.getFileType(), this.getFileName(), this.createUnitTest(), this.createFunctionalTest(), this.project);
+        CreateFileInfo createFileInfo = new CreateFileInfo(this.getExtensionInfo(), this.getFileType(), this.getDirectory(), this.getFileName(), this.createUnitTest(), this.createFunctionalTest(), this.project);
         return createFileInfo;
     }
 

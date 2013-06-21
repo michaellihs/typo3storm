@@ -13,20 +13,25 @@ public class CreateFileInfo {
 
     final public ExtensionInfo extensionInfo;
     final public FileType fileType;
+    final public String path;
     final public String fileName;
-    final public Boolean unitTest;
-    final public Boolean functionalTest;
+    final public Boolean createUnitTest;
+    final public Boolean createFunctionalTest;
     final public Project project;
 
 
 
-    public CreateFileInfo(ExtensionInfo extensionInfo, FileType fileType, String fileName, boolean unitTest, boolean functionalTest, Project project) {
+    public CreateFileInfo(ExtensionInfo extensionInfo, FileType fileType, String path, String fileName, boolean createUnitTest, boolean createFunctionalTest, Project project) {
         this.extensionInfo = extensionInfo;
         this.fileType = fileType;
+        this.path = path;
         this.fileName = fileName;
-        this.unitTest = unitTest;
-        this.functionalTest = functionalTest;
+        this.createUnitTest = createUnitTest;
+        this.createFunctionalTest = createFunctionalTest;
         this.project = project;
     }
+
+
+
 
 }

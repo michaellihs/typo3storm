@@ -1,6 +1,7 @@
 package com.punktde.typo3storm.helpers;
 
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
@@ -36,10 +37,12 @@ public class ExtensionHelper {
     public static List<ExtensionInfo> getExtensionInfos(Project project) {
         List<ExtensionInfo> extensionInfos = new ArrayList<ExtensionInfo>();
         PsiDirectory extensionsDirectory = getExtensionDirectory(project);
-        for (PsiDirectory extensionDirectory : extensionsDirectory.getSubdirectories()) {
-            // TODO think about whether we have to check anything else here, before declaring a directory inside typo3conf/ext to be an extension (existence of ext_emconf.php ...)
-            if (extensionDirectory.getName() != "..") {
-                extensionInfos.add(new ExtensionInfo(project, extensionDirectory));
+        if (extensionsDirectory != null) {
+            for (PsiDirectory extensionDirectory : extensionsDirectory.getSubdirectories()) {
+                // TODO think about whether we have to check anything else here, before declaring a directory inside typo3conf/ext to be an extension (existence of ext_emconf.php ...)
+                if (extensionDirectory.getName() != "..") {
+                    extensionInfos.add(new ExtensionInfo(project, extensionDirectory));
+                }
             }
         }
         return extensionInfos;
@@ -62,10 +65,14 @@ public class ExtensionHelper {
         VirtualFile projectRootDirectory = LocalFileSystem.getInstance().findFileByIoFile(new File(settings.getPathToTypo3()));
         PsiDirectory projectDirectory = PsiManager.getInstance(project).findDirectory(projectRootDirectory);
         if (projectDirectory.findSubdirectory(TYPO3_CONF_DIRECTORY) == null) {
-            throw new RuntimeException(TYPO3_CONF_DIRECTORY + " does not exist in current project path.");
+            Messages.showInfoMessage("The directory 'typo3conf' does not exist in project base path!", "Missing Directory");
+            return null;
+            // throw new RuntimeException(TYPO3_CONF_DIRECTORY + " does not exist in current project path.");
         }
         if (projectDirectory.findSubdirectory(TYPO3_CONF_DIRECTORY).findSubdirectory(TYPO3_EXT_DIRECTORY) == null) {
-            throw new RuntimeException(TYPO3_EXT_DIRECTORY + " does not exist in " + TYPO3_CONF_DIRECTORY + " within current project.");
+            Messages.showInfoMessage("The directory 'ext' does not exist in project_base_path/typo3conf!", "Missing Directory");
+            return null;
+            //throw new RuntimeException(TYPO3_EXT_DIRECTORY + " does not exist in " + TYPO3_CONF_DIRECTORY + " within current project.");
         }
         PsiDirectory extensionDirectory = projectDirectory.findSubdirectory(TYPO3_CONF_DIRECTORY).findSubdirectory(TYPO3_EXT_DIRECTORY);
         return extensionDirectory;

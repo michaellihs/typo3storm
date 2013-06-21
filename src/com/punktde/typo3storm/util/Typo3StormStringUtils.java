@@ -1,5 +1,8 @@
 package com.punktde.typo3storm.util;
 
+import com.google.common.base.CaseFormat;
+import org.apache.commons.lang.WordUtils;
+
 /**
  * Class implements some helper methods for string manipulation.
  *
@@ -23,6 +26,37 @@ public class Typo3StormStringUtils {
         String fileNameWithoutSuffix;
         fileNameWithoutSuffix = fileName.replace(".php", "");
         return fileNameWithoutSuffix;
+    }
+
+
+    /**
+     * Returns a path for a given file name
+     *
+     * E.g. "Tx_PtExtbase_Domain_Model_FeUser.php" --> "Domain/Model/FeUser.php"
+     *
+     * @param fileName Name of the file to be converted to a path
+     * @return Converted path for given file name
+     */
+    public static String fileNameToPath(String fileName) {
+        String pathForFileName = "";
+        String[] fileNameParts = fileName.split("_");
+        // String pathForFileName = camelCaseToDashedString(fileNameParts[1]) + "/";
+        for (int i = 2; i < fileNameParts.length; i++) {
+            pathForFileName += fileNameParts[i] + "/";
+        }
+        pathForFileName = pathForFileName.substring(0, pathForFileName.length() - 1);
+        return pathForFileName;
+    }
+
+
+    /**
+     * Converts UpperCamelCase into upper_camel_case
+     *
+     * @param camelCaseString String to be transformed to lower underscore
+     * @return String transformed into lower underscore
+     */
+    public static String camelCaseToDashedString(String camelCaseString) {
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, camelCaseString);
     }
 
 
@@ -145,5 +179,61 @@ public class Typo3StormStringUtils {
     public static String dashToUpperCase(String dashedString) {
         return concatPartsUppercase(dashedString.split("_"));
     }
+
+
+
+    /**
+     * Replaces last occurrence of toReplace in given string with replacement
+     *
+     * @param string String in which to replace last occurrence of toReplace
+     * @param toReplace Substring to be searched in string
+     * @param replacement String to replace substring with
+     * @return String with replaced toReplace
+     */
+    public static String replaceLast(String string, String toReplace, String replacement) {
+        int pos = string.lastIndexOf(toReplace);
+        if (pos > -1) {
+            return string.substring(0, pos)
+                    + replacement
+                    + string.substring(pos + toReplace.length(), string.length());
+        } else {
+            return string;
+        }
+    }
+
+
+
+    /**
+     * Removes "Test" from the end of the given string (only if given string contains "Test" at the end of the string
+     *
+     * @param string String to search substring at the end
+     * @param substring Substring to be replaced at the end of string
+     * @return String with ending replaced
+     */
+    public static String removeSubstringFromEndOfString(String string, String substring) {
+        return string.endsWith(substring) ? string.substring(0,string.length() - substring.length()) : string;
+    }
+
+
+    /**
+     * Combines elements of given array with given glue string.
+     * @param inputArray Array to be imploded
+     * @param glueString Glue to be used for implosion
+     * @return Imploded string
+     */
+    public static String implode(String[] inputArray, String glueString) {
+        String output = "";
+        if (inputArray.length > 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(inputArray[0]);
+            for (int i=1; i<inputArray.length; i++) {
+                sb.append(glueString);
+                sb.append(inputArray[i]);
+            }
+            output = sb.toString();
+        }
+        return output;
+    }
+
 
 }

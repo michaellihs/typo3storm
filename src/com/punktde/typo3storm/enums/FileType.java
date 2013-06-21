@@ -8,14 +8,14 @@ package com.punktde.typo3storm.enums;
  */
 public enum FileType {
 
-    Controller("Controller", "Classes/Controllers/", true, true),
-    DomainModel("Domain Model", "Classes/Domain/Model/", true, true),
-    Repository("Repository", "Classes/Domain/Repository/", true, true),
-    UnitTest("Unit Test", "Tests/Unit/", false, false),
-    FunctionalTest("Functional Test", "Tests/Functional/", false, false),
-    Layout("Fluid Layout", "Resources/Private/Layouts/", false, false),
-    Template("Fluid Template", "Resources/Private/Templates/", false, false),
-    Partial("Fluid Partial", "Resources/Private/Partials/", false, false);
+    Controller("Controller", "Classes/Controller", true, true),
+    DomainModel("Domain Model", "Classes/Domain/Model", true, true),
+    Repository("Repository", "Classes/Domain/Repository", true, true),
+    UnitTest("Unit Test", "Tests/Unit", false, false),
+    FunctionalTest("Functional Test", "Tests/Functional", false, false),
+    Layout("Fluid Layout", "Resources/Private/Layouts", false, false),
+    Template("Fluid Template", "Resources/Private/Templates", false, false),
+    Partial("Fluid Partial", "Resources/Private/Partials", false, false);
 
 
 

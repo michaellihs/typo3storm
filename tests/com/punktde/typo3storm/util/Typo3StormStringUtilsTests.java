@@ -90,4 +90,32 @@ public class Typo3StormStringUtilsTests {
         Assert.assertEquals("removeLeadingClasses did not return expected output", expectedOutput, Typo3StormStringUtils.removeLeadingClasses(input));
     }
 
+
+
+    @Test
+    public void camelCaseToDashedStringReturnsExpectedString() {
+        String input = "UpperCamelCase";
+        String expectedOutput = "upper_camel_case";
+
+        Assert.assertEquals("camelCaseToDashedString did not return expected output", expectedOutput, Typo3StormStringUtils.camelCaseToDashedString(input));
+    }
+
+
+
+    @Test
+    public void fileNameToPathReturnsExpectedString() {
+        String input = "Tx_PtExtbase_Domain_Model_FeUser.php";
+        String expectedOutput = "Domain/Model/FeUser.php";
+
+        Assert.assertEquals("fileNameToPath did not return expected output", expectedOutput, Typo3StormStringUtils.fileNameToPath(input));
+    }
+
+
+
+    @Test
+    public void splitWorksAsExpected() {
+        String[] splitResult = "filename.php".split("\\.");
+        Assert.assertEquals(2, splitResult.length);
+    }
+
 }

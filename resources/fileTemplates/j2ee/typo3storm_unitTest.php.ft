@@ -1,0 +1,18 @@
+<?php
+#parse("TYPO3 Copyright File Header")
+
+/**
+ * Unit testcase for class ${TESTED_CLASS}
+ *
+#if(${PACKAGE} != "")
+ * @package ${PACKAGE}
+#end
+#if(${SUB_PACKAGE} != "")
+ * @subpackage ${SUB_PACKAGE}
+#end
+ * @see ${TESTED_CLASS}
+ * @author ${AUTHOR}
+ */
+class ${CLASSNAME} #if(${EXTENDS} != "")extends ${EXTENDS}#end {
+
+}
