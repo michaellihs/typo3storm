@@ -8,6 +8,7 @@ Features
 
 * Creation of Extbase classes like Controllers, Domain Models, Repositories.
 * Creation of test classes for unit tests and functional tests.
+* Auto-completion for objects created by t3lib_div::makeInstance
 
 
 Installation
