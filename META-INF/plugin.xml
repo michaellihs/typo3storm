@@ -50,6 +50,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <projectConfigurable instance="com.punktde.typo3storm.ui.forms.Typo3StormSettingsForm"></projectConfigurable>
         <projectService serviceImplementation="com.punktde.typo3storm.Typo3StormSettings"/>
+        <php.typeProvider implementation="com.punktde.typo3storm.extensions.MakeInstanceTypeProvider"/>
     </extensions>
 
 </idea-plugin>
