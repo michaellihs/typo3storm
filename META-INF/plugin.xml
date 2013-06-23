@@ -35,6 +35,7 @@
     </project-components>
 
     <actions>
+        <!-- Create new file actions -->
         <action id="Typo3StormAction" class="com.punktde.typo3storm.Typo3StormAction" text="Typo3Storm"
                 description="Typo3Storm context aware action">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
@@ -48,9 +49,14 @@
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
+
+        <!-- plugin settings -->
         <projectConfigurable instance="com.punktde.typo3storm.ui.forms.Typo3StormSettingsForm"></projectConfigurable>
         <projectService serviceImplementation="com.punktde.typo3storm.Typo3StormSettings"/>
+
+        <!-- auto-completion and type contributors -->
         <php.typeProvider implementation="com.punktde.typo3storm.extensions.MakeInstanceTypeProvider"/>
+        <php.typeProvider implementation="com.punktde.typo3storm.extensions.ObjectManagerTypeProvider"/>
     </extensions>
 
 </idea-plugin>

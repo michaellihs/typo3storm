@@ -3,12 +3,14 @@ Typo3Storm
 
 PHPStorm plugin for TYPO3 (Extbase) developers. This plugin makes TYPO3 development with PHPStorm more easy.
 
+
 Features
 --------
 
 * Creation of Extbase classes like Controllers, Domain Models, Repositories.
 * Creation of test classes for unit tests and functional tests.
 * Auto-completion for objects created by t3lib_div::makeInstance
+* Auto-completion for objects created by Extbase object manager
 
 
 Installation
@@ -39,6 +41,7 @@ Planned features
 * Extension Kickstarter
 * Running TYPO3 unit tests directly in PHPStorm
 * Creation of Fluid templates for controller actions
+* Auto-complete for Fluid ViewHelper tags and attributes
 
 
 Acknowledgement
